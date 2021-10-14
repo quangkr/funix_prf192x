@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PRF192X - ASM1</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <script>
+
+      // save this year in a constant
+      const THIS_YEAR = new Date().getFullYear();
+
+      /**
+      * @description Validate user input birth year
+      * @param {string} input - User input
+      * @returns {boolean} Whether user input value is valid
+      */
+      function validateBirthYear(input) {
+        return Number.isInteger(Number(input))
+          && parseInt(input, 10) <= THIS_YEAR;
+      }
+
+      /**
+      * @description Main function of this small app
+      */
+      function notify() {
+        alert("Chào mừng bạn đến với ứng dụng JavaScript đầu tiên");
+
+        // Collect user inputs
+        const name = prompt("Hãy nhập tên của bạn");
+        const city = prompt("Hãy nhập thành phố bạn đang sống");
+        const mobile = prompt("Hãy nhập số điện thoại của bạn");
+        const email = prompt("Hãy nhập email của bạn");
+        const job = prompt("Hãy nhập nghề nghiệp hiện tại của bạn");
+        let year = prompt("Hãy nhập năm sinh");
+        // Re-prompt user for input until user type in a valid birth year
+        while (!validateBirthYear(year)) {
+          year = prompt("Hãy nhập lại năm sinh");
+        }
+
+        // display collected data
+        document.getElementById('name').innerText = name;
+        document.getElementById('city').innerText = city;
+        document.getElementById('mobile').innerText = mobile;
+        document.getElementById('email').innerText = email;
+        document.getElementById('job').innerText = job;
+        // calculate user's age
+        document.getElementById('age').innerText = THIS_YEAR - year;
+
+        // display hidden block
+        document.getElementById('nextstep').style.display = 'block';
+      }
+    </script>
+  </head>
+
+  <body>
+
+    <button onclick="notify()">Try it</button>
+
+    <p id="name" style="font-weight: bold"></p>
+    <p id="city" style="font-weight: bold"></p>
+    <p id="mobile" style="font-weight: bold"></p>
+    <p id="email" style="font-weight: bold"></p>
+    <p id="job" style="font-weight: bold"></p>
+    <p id="age" style="font-weight: bold"></p>
+
+    <div id="nextstep" style="display: none"><button>Bước tiếp theo</button></div>
+
+  </body>
+</html>
