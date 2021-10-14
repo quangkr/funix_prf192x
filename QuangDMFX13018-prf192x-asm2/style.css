@@ -54,25 +54,53 @@ body {
 }
 
 #markform label {
+  position: relative;
   align-self: stretch;
   display: flex;
   align-items: center;
 }
 
-#markform label span {
+#markform .label-text {
   flex-basis: 10ch;
 }
 
-#markform label input {
+#markform input {
   flex-grow: 1;
   padding: 0.5rem 1rem;
   border: 1px solid steelblue;
 }
 
-#markform label input:focus {
+#markform input:focus {
   outline: 2px solid steelblue;
+}
+
+#markform .error input {
+  border: 1px solid crimson;
+}
+
+#markform .error input:focus {
+  outline: 2px solid crimson;
+}
+
+#markform .error-message {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  color: crimson;
+  font-size: 1.4rem;
+  pointer-events: none;
+  transform: translateY(-50%);
 }
 
 #marksheet {
   flex-grow: 8;
+}
+
+#marksheet td {
+  padding: 1rem 0;
+  text-align: center;
+}
+
+#marksheet :not(:first-child) :nth-child(2) {
+  text-align: start;
 }
