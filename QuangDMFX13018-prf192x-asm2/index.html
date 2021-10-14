@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PRF192X - ASM2</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+
+    <h1 id="page-title">Class Marksheet</h1>
+
+    <div class="albatross container" style="--margin: 6rem; --breakpoint: 100rem">
+
+      <form id="markform">
+        <label>
+          <span>Họ tên</span>
+          <input type="text" name="name" value="">
+        </label>
+
+        <label>
+          <span>Điểm toán</span>
+          <input type="text" name="math" value="">
+        </label>
+
+        <label>
+          <span>Điểm lý</span>
+          <input type="text" name="phys" value="">
+        </label>
+
+        <label>
+          <span>Điểm hóa</span>
+          <input type="text" name="chem" value="">
+        </label>
+
+        <button type="submit">Nhập</button>
+      </form>
+
+      <table id="marksheet">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Họ tên</th>
+            <th>Toán</th>
+            <th>Lý</th>
+            <th>Hóa</th>
+            <th>Trung bình</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+    </div>
+
+  </body>
+</html>

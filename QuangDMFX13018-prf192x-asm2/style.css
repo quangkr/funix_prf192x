@@ -1,0 +1,78 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.6rem;
+}
+
+.albatross {
+  display: flex;
+  flex-wrap: wrap;
+  --margin: 1rem;
+  --breakpoint: 40rem;
+  --modifier: calc(var(--breakpoint) - 100%);
+  margin: calc(var(--margin) * -1);
+}
+
+.albatross > * {
+  flex-grow: 1;
+  flex-basis: calc(var(--modifier) * 9999);
+  margin: var(--margin);
+}
+
+.container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+}
+
+#page-title {
+  text-align: center;
+  margin: 6rem auto 3rem auto;
+}
+
+#markform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 4;
+}
+
+#markform > * {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#markform label {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+#markform label span {
+  flex-basis: 10ch;
+}
+
+#markform label input {
+  flex-grow: 1;
+  padding: 0.5rem 1rem;
+  border: 1px solid steelblue;
+}
+
+#markform label input:focus {
+  outline: 2px solid steelblue;
+}
+
+#marksheet {
+  flex-grow: 8;
+}
