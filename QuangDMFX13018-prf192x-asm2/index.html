@@ -17,50 +17,59 @@
 
     <h1 id="page-title">Class Marksheet</h1>
 
-    <div class="albatross container" style="--margin: 6rem; --breakpoint: 100rem">
+    <div class="albatross container" style="--margin: 4rem; --breakpoint: 100rem">
 
-      <form id="markform">
-        <label>
-          <span class="label-text">Họ tên</span>
-          <input type="text" name="name" value="">
-          <div class="error-message"></div>
-        </label>
+      <div id="markform-container">
+        <form id="markform">
+          <label>
+            <span class="label-text">Họ tên</span>
+            <input type="text" name="name" value="">
+            <div class="error-message"></div>
+          </label>
 
-        <label>
-          <span class="label-text">Điểm toán</span>
-          <input type="text" name="math" value="">
-          <div class="error-message"></div>
-        </label>
+          <label>
+            <span class="label-text">Điểm toán</span>
+            <input type="text" name="math" value="">
+            <div class="error-message"></div>
+          </label>
 
-        <label>
-          <span class="label-text">Điểm lý</span>
-          <input type="text" name="phys" value="">
-          <div class="error-message"></div>
-        </label>
+          <label>
+            <span class="label-text">Điểm lý</span>
+            <input type="text" name="phys" value="">
+            <div class="error-message"></div>
+          </label>
 
-        <label>
-          <span class="label-text">Điểm hóa</span>
-          <input type="text" name="chem" value="">
-          <div class="error-message"></div>
-        </label>
+          <label>
+            <span class="label-text">Điểm hóa</span>
+            <input type="text" name="chem" value="">
+            <div class="error-message"></div>
+          </label>
 
-        <button type="submit">Nhập</button>
-      </form>
+          <button class="btn" type="submit">Nhập</button>
+        </form>
 
-      <table id="marksheet">
-        <thead>
-          <tr>
-            <th>STT</th>
-            <th>Họ tên</th>
-            <th>Toán</th>
-            <th>Lý</th>
-            <th>Hóa</th>
-            <th>Trung bình</th>
-            <th>Xóa</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+        <div id="extra-buttons" class="albatross">
+          <button class="btn">Tính điểm trung bình</button>
+          <button class="btn">Xác định học sinh giỏi</button>
+        </div>
+      </div>
+
+      <div id="marksheet-container">
+        <table id="marksheet">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Họ tên</th>
+              <th>Toán</th>
+              <th>Lý</th>
+              <th>Hóa</th>
+              <th>Trung bình</th>
+              <th>Xóa</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
 
     </div>
 
