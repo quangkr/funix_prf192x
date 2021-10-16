@@ -1,9 +1,6 @@
 // vim: set ft=javascript foldmethod=marker :
 // global variables{{{
-const marksheet = document.getElementById('marksheet');
-const marksheetBody = document.querySelector('#marksheet tbody')
-const averageScoreButton = document.getElementById('avg-score-btn');
-const excellentStudentButton = document.getElementById('excel-student-btn');
+const marksheetBody = $('#marksheet tbody');
 
 const initialTestScore = {
   name: '',
@@ -26,23 +23,6 @@ function validateInputScore(value) {
     && !isNaN(parseFloat(value))
     && parseFloat(value) <= 10
     && parseFloat(value) >= 0;
-}
-//}}}
-
-/** @description Recalculate row indices{{{
-  * @param {HTMLTableElement} table - the table element to work on
-  * @param {number} startRow - only update indices from this row
-  * @param {number} indexCol - specify indices' column
-  */
-function recalculateRowIndices(table, startRow = 0, indexCol = 0) {
-  // Array.from() is necessary because table.rows is an HTMLTableElement
-  Array.from(table.rows).forEach(row => {
-    if (row.rowIndex - 1 < startRow) {
-      return
-    } else {
-      row.cells[indexCol].innerText = row.rowIndex;
-    }
-  });
 }
 //}}}
 
@@ -100,7 +80,9 @@ $('#markform').submit(function(e) {
     deleteButton.addClass('btn');
     deleteButton.addClass('btn--small');
     deleteButton.attr('style', '--btn-bg: var(--color-secondary);');
-    deleteButton.on('click', handleDeleteRow);
+    deleteButton.click(function() {
+      $(this).parent().parent().remove();
+    });
     const newCell = $('<td></td>');
     newCell.append(deleteButton);
     newRow.append(newCell);
@@ -116,57 +98,46 @@ $('#markform').submit(function(e) {
     $(this).children('.error-message').text('');
   })
   // set focus on form's first input
-  $('#markform input')[0].focus();
+  $('#markform label:first-child input').focus();
   // also reset testScore object
-  //testScore = { ...initialTestScore };
+  testScore = { ...initialTestScore };
 });
 //}}}
 
-/** @description Handle calculate average score button{{{
-  * @param {HTMLTableElement} table - the table that contains the data to work on
-  */
-function handleCalculateAverageScore(table) {
-  Array.from(table.rows).forEach(row => {
-    const [ , , math, phys, chem ] = Array.from(row.cells);
+// Handle calculate average score button {{{
+$('#avg-score-btn').click(function() {
+  $('#marksheet tbody tr').each(function() {
+    // use array destructuring
+    const [ , , math, phys, chem ] = $(this).children().map(function() {
+      return $(this).text();
+    }).toArray();
 
-    const sumScore = [ math, phys, chem ].reduce((avg, score) => avg + parseFloat(score.innerText), 0)
+    const sumScore = [ math, phys, chem ].reduce((avg, score) => avg + parseFloat(score), 0)
     const avgScore = (sumScore / 3).toFixed(1);
 
-    row.cells[5].innerText = avgScore;
+    $(this).children(":nth-child(6)").text(avgScore);
   });
-}
+});
 //}}}
 
-/** @description Handle excellent student button{{{
-  * @param {HTMLTableElement} table - the table that contains the data to work on
-  */
-function handleDetermineExcellentStudent(table) {
-  Array.from(table.rows).forEach(row => {
-    const avgScore = row.cells[5].innerText;
+// Handle excellent student button {{{
+$('#excel-student-btn').click(function() {
+  $('#marksheet tbody tr').each(function() {
+    const avgScore = $(this).children(":nth-child(6)").text();
 
     if ( parseFloat(avgScore) >= 8 ) {
-      row.classList.add('excel-std');
+      $(this).addClass('excel-std');
     } else {
-      row.classList.remove('excel-std');
+      $(this).removeClass('excel-std');
     }
   });
-}
+});
 //}}}
 
-/** @description Handle delete row event{{{
-  * @param {Event} e - this event should be emitted from a row inside a table
-  */
-function handleDeleteRow(e) {
-  e.preventDefault();
-  const row = e.target.parentNode.parentNode;
-  const table = e.target.parentNode.parentNode.parentNode;
-
-  table.deleteRow(row.rowIndex - 1);
-  recalculateRowIndices(table, row.rowIndex);
-}
-//}}}
-
-// event listeners{{{
-averageScoreButton.addEventListener('click', () => { handleCalculateAverageScore(marksheetBody) });
-excellentStudentButton.addEventListener('click', () => { handleDetermineExcellentStudent(marksheetBody) });
+// Handle recalculate indices event {{{
+$('#recalc-idx-btn').click(function() {
+  $('#marksheet tbody tr td:first-child').text(function(index) {
+    return index + 1;
+  });
+});
 //}}}
