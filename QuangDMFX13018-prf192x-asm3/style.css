@@ -1,0 +1,174 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.6rem;
+}
+
+:root {
+  --color-primary: steelblue;
+  --color-secondary: tomato;
+  --color-light-gray: whitesmoke;
+}
+
+.albatross {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  --margin: 1rem;
+  --breakpoint: 40rem;
+  --modifier: calc(var(--breakpoint) - 100%);
+  margin: 0 calc(var(--margin) * -1);
+}
+
+.albatross > * {
+  flex-grow: 1;
+  flex-basis: calc(var(--modifier) * 9999);
+  margin: calc(var(--margin)/4) var(--margin);
+}
+
+.container {
+  max-width: 1280px;
+  width: 100%;
+  height: calc(100vh - 13rem);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3rem 1rem;
+}
+
+.btn {
+  --btn-bg: steelblue;
+  padding: 1rem 2.5rem;
+  border: none;
+  background-color: var(--btn-bg);
+  color: white;
+}
+
+.btn:hover {
+  filter: brightness(95%);
+}
+
+.btn:active {
+  transform: translateY(2px);
+}
+
+.btn:focus {
+  outline: 2px solid var(--btn-bg);
+  outline-offset: 1px;
+}
+
+.btn--small {
+  padding: 0.75rem 1rem;
+}
+
+#page-title {
+  width: 100%;
+  text-align: center;
+  font-size: 3rem;
+  margin: 6rem 0 3rem 0;
+}
+
+#markform-container {
+  flex-grow: 4;
+}
+
+#markform {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#markform > * {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#markform label {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+#markform .label-text {
+  flex-basis: 10ch;
+}
+
+#markform input {
+  flex-grow: 1;
+  padding: 0.5rem 1rem;
+  border: 1px solid steelblue;
+}
+
+#markform input:focus {
+  outline: 2px solid steelblue;
+}
+
+#markform .error input {
+  border: 1px solid tomato;
+}
+
+#markform .error input:focus {
+  outline: 2px solid tomato;
+}
+
+#markform .error-message {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  color: crimson;
+  font-size: 1.4rem;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+#extra-buttons > * {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#marksheet-container {
+  flex-grow: 8;
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+#marksheet {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+#marksheet th, #marksheet td {
+  padding: 1ch 0;
+  text-align: center;
+}
+
+#marksheet th {
+  background-color: var(--color-primary);
+  color: white;
+  border: 1px solid var(--color-primary);
+}
+
+#marksheet td {
+  border: 1px solid var(--color-light-gray);
+}
+
+#marksheet tr td:nth-child(2) {
+  text-align: start;
+  word-wrap: normal;
+}
+
+#marksheet .excel-std {
+  color: var(--color-secondary);
+}
