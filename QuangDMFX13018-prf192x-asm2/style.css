@@ -14,6 +14,12 @@ body {
   font-size: 1.6rem;
 }
 
+:root {
+  --color-primary: steelblue;
+  --color-secondary: tomato;
+  --color-light-gray: whitesmoke;
+}
+
 .albatross {
   display: flex;
   flex-wrap: wrap;
@@ -40,9 +46,10 @@ body {
 }
 
 .btn {
+  --btn-bg: steelblue;
   padding: 1rem 2.5rem;
   border: none;
-  background-color: steelblue;
+  background-color: var(--btn-bg);
   color: white;
 }
 
@@ -55,8 +62,12 @@ body {
 }
 
 .btn:focus {
-  outline: 2px solid steelblue;
+  outline: 2px solid var(--btn-bg);
   outline-offset: 1px;
+}
+
+.btn--small {
+  padding: 0.75rem 1rem;
 }
 
 #page-title {
@@ -104,11 +115,11 @@ body {
 }
 
 #markform .error input {
-  border: 1px solid crimson;
+  border: 1px solid tomato;
 }
 
 #markform .error input:focus {
-  outline: 2px solid crimson;
+  outline: 2px solid tomato;
 }
 
 #markform .error-message {
@@ -134,13 +145,30 @@ body {
 
 #marksheet {
   width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
 
-#marksheet td {
-  padding: 1rem 0;
+#marksheet th, #marksheet td {
+  padding: 1ch 0;
   text-align: center;
 }
 
-#marksheet :not(:first-child) :nth-child(2) {
+#marksheet th {
+  background-color: var(--color-primary);
+  color: white;
+  border: 1px solid var(--color-primary);
+}
+
+#marksheet td {
+  border: 1px solid var(--color-light-gray);
+}
+
+#marksheet tr td:nth-child(2) {
   text-align: start;
+  word-wrap: normal;
+}
+
+#marksheet .excel-std {
+  color: var(--color-secondary);
 }
