@@ -1,0 +1,239 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+:root {
+  --color-primary: steelblue;
+  --color-error: tomato;
+  --color-light-gray: whitesmoke;
+  --color-dark-gray: gray;
+  --color-white: #ffffff;
+  --color-black: #333333;
+
+  --border-radius-sm: 5px;
+
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0px 2px 4px 1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 1px 6px 1px rgba(0, 0, 0, 0.15);
+
+  --transition-fast: all 0.1s ease-out;
+  --transition-slow: all 0.3s ease-out;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.6rem;
+  color: var(--color-black);
+}
+
+input {
+  color: var(--color-black);
+}
+
+.navbar {
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.navbar-logo {
+  padding: 1rem 0;
+  flex-basis: max-content;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  margin-right: 3rem;
+  font-size: 2rem;
+}
+
+.navbar-search {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+  flex-grow: 1;
+  max-width: 60rem;
+}
+
+.navbar-icon {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-dark-gray);
+  background-color: transparent;
+}
+
+.navbar-icon svg {
+  height: 70%;
+  fill: currentColor;
+}
+
+.navbar-icon--small svg {
+  height: 50%;
+}
+
+.navbar-button {
+  border: none;
+  border-radius: 50%;
+  transition: var(--transition-fast);
+}
+
+.navbar-button:active {
+  background-color: var(--color-light-gray);
+}
+
+.navbar-button:focus,
+.navbar-button:focus-visible {
+  outline-color: var(--color-dark-gray);
+}
+
+.navbar-search-form {
+  flex: 1 0 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  transition: var(--transition-slow);
+}
+
+.navbar-search-input {
+  flex-grow: 1;
+  height: 80%;
+  border: none;
+  background-color: var(--color-light-gray);
+  padding: 1rem 5rem;
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition-fast);
+}
+
+.navbar-search-input::placeholder {
+  color: var(--color-dark-gray);
+  transition: var(--transition-slow);
+}
+
+#navbar-search-icon {
+  position: absolute;
+  left: 0.5rem;
+}
+
+#navbar-search-submit {
+  position: absolute;
+  right: 0.5rem;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar-search:focus-within .navbar-search-input {
+  background-color: var(--color-white);
+  outline: none;
+  box-shadow: var(--shadow-md);
+}
+
+.navbar-search:focus-within #navbar-search-submit {
+  opacity: 1;
+  pointer-events: initial;
+  cursor: pointer;
+}
+
+.navbar-filter {
+  position: relative;
+}
+
+.navbar-filter-form {
+  position: absolute;
+  top: 6rem;
+  right: 0;
+  width: calc(100vw - 4rem);
+  max-width: 50rem;
+  padding: 2rem 3rem;
+
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  border-radius: var(--border-radius-sm);
+}
+
+.navbar-filter-form > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.navbar-filter-form input, .navbar-filter-form select {
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-black);
+  padding: 0.5rem 1rem;
+}
+
+.navbar-filter-form select {
+  background-color: var(--color-white);
+}
+
+.navbar-filter-form > label {
+  display: flex;
+  align-items: baseline;
+}
+
+.navbar-filter-form > label > * {
+  flex-grow: 1;
+}
+
+.navbar-filter-form > label > span {
+  flex-grow: 0;
+  flex-basis: 9ch;
+}
+
+.navbar-filter-form > fieldset {
+  padding: 0.5rem;
+}
+
+.navbar-filter-form fieldset .fieldset-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.navbar-filter-form fieldset .fieldset-content > * {
+  margin: 2rem 1rem;
+}
+
+.navbar-filter-form fieldset .fieldset-content label input[type="checkbox"] {
+  display: none;
+}
+
+.navbar-filter-form fieldset .fieldset-content label input[type="checkbox"] ~ span {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: var(--color-dark-gray);
+  padding: 1rem 2rem;
+  border: 1.5px solid;
+  border-radius: var(--border-radius-sm);
+  border-color: var(--color-dark-gray);
+}
+
+.navbar-filter-form fieldset .fieldset-content label input[type="checkbox"]:checked ~ span {
+  color: inherit;
+  border-color: var(--color-black);
+}
+
+.navbar-filter-form.opened {
+  display: flex;
+}
