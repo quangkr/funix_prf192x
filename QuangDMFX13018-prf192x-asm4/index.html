@@ -16,18 +16,6 @@
   </head>
 
   <body>
-    <template id="template-article-piece">
-      <div class="article-piece">
-        <div class="article-piece-img-wrapper">
-          <a class="article-piece-img-link" href="">
-            <img class="article-piece-img" src="" alt="">
-          </a>
-        </div>
-        <h2 class="article-piece-title"><a class="article-piece-title-link" href=""></a></h2>
-        <p class="article-piece-time"></p>
-        <p class="article-piece-summary"></p>
-      </div>
-    </template>
 
     <svg
       aria-hidden="true"
@@ -37,15 +25,14 @@
       xmlns:xlink="http://www.w3.org/1999/xlink"
       >
       <defs>
-      <symbol id="icon-keyboard_backspace" viewBox="0 0 24 24">
-      <path d="M21 11.016v1.969h-14.156l3.563 3.609-1.406 1.406-6-6 6-6 1.406 1.406-3.563 3.609h14.156z"></path>
+      <symbol id="icon-error_outline" viewBox="0 0 24 24">
+      <path d="M12 20.016q3.281 0 5.648-2.367t2.367-5.648-2.367-5.648-5.648-2.367-5.648
+      2.367-2.367 5.648 2.367 5.648 5.648 2.367zM12 2.016q4.125 0 7.055 2.93t2.93
+      7.055-2.93 7.055-7.055 2.93-7.055-2.93-2.93-7.055 2.93-7.055 7.055-2.93zM11.016
+      6.984h1.969v6h-1.969v-6zM11.016 15h1.969v2.016h-1.969v-2.016z"></path>
       </symbol>
-
       <symbol id="icon-arrow_forward" viewBox="0 0 24 24">
       <path d="M12 3.984l8.016 8.016-8.016 8.016-1.406-1.406 5.578-5.625h-12.188v-1.969h12.188l-5.578-5.625z"></path>
-      </symbol>
-      <symbol id="icon-arrow_back" viewBox="0 0 24 24">
-      <path d="M20.016 11.016v1.969h-12.188l5.578 5.625-1.406 1.406-8.016-8.016 8.016-8.016 1.406 1.406-5.578 5.625h12.188z"></path>
       </symbol>
       <symbol id="icon-search" viewBox="0 0 24 24">
       <path d="M9.516 14.016q1.875 0 3.188-1.313t1.313-3.188-1.313-3.188-3.188-1.313-3.188
@@ -59,171 +46,224 @@
       1.406-1.828 1.523-1.969 1.359-1.734q0.281-0.328 0.234-0.703t-0.328-0.656-0.703-0.281h-13.875q-0.422
       0-0.703 0.281t-0.328 0.656 0.234 0.703z"></path>
       </symbol>
-      <symbol id="icon-arrow_drop_down" viewBox="0 0 24 24">
-      <path d="M6.984 9.984h10.031l-5.016 5.016z"></path>
-      </symbol>
-      <symbol id="icon-arrow_drop_up" viewBox="0 0 24 24">
-      <path d="M6.984 14.016l5.016-5.016 5.016 5.016h-10.031z"></path>
-      </symbol>
       </defs>
     </svg>
+
+    <template id="template-article-piece">
+      <div class="article-piece">
+        <div class="article-piece-img-wrapper">
+          <a class="article-piece-img-link" href="" target="_blank" rel="noopener noreferer nofollow">
+            <img class="article-piece-img" src="" alt="">
+          </a>
+        </div>
+        <div class="article-piece-content-wrapper">
+          <h2
+            class="article-piece-title"
+            ><a
+              class="article-piece-title-link"
+              href=""
+              target="_blank"
+              rel="noopener noreferer nofollow"
+              ></a
+            ></h2>
+          <p class="article-piece-time"></p>
+          <p class="article-piece-summary"></p>
+        </div>
+      </div>
+    </template>
+
+    <template id="template-error">
+      <div class="error-container">
+        <div class="error-icon">
+          <svg>
+            <use xlink:href="#icon-error_outline"></use>
+          </svg>
+        </div>
+        <p class="error-text"></p>
+      </div>
+    </template>
 
     <header>
 
       <nav class="navbar">
-        <div class="navbar-logo">
-          My News
-        </div>
+        <div class="navbar-content container">
+          <div class="navbar-logo">My<span>News</span></div>
 
-        <div class="navbar-search">
+          <div class="navbar-search">
 
-          <form class="navbar-search-form" role="search">
+            <form class="navbar-search-form" role="search">
 
-            <div id="navbar-search-icon" class="navbar-icon">
-              <svg>
-                <use xlink:href="#icon-search"></use>
-              </svg>
-            </div>
+              <div id="navbar-search-icon" class="navbar-icon">
+                <svg>
+                  <use xlink:href="#icon-search"></use>
+                </svg>
+              </div>
 
-            <input
+              <input
               class="navbar-search-input"
               type="text"
-              name="article-search"
+              name="searchquery"
               placeholder="Search for articles"
-            >
+              >
 
-            <button id="navbar-search-submit" class="navbar-icon navbar-icon--small navbar-button" type="submit">
+              <button id="navbar-search-submit" class="navbar-icon navbar-icon--small navbar-button" type="submit">
+                <svg>
+                  <use xlink:href="#icon-arrow_forward"></use>
+                </svg>
+              </button>
+
+            </form>
+
+          </div>
+
+          <div class="navbar-filter">
+            <form class="navbar-filter-form">
+
+              <label>
+                <span>Language</span>
+                <select name="language">
+                  <option value=""></option>
+                  <option value="ar">Arabic</option>
+                  <option value="de">German</option>
+                  <option value="el">Greek</option>
+                  <option value="en" selected>English</option>
+                  <option value="es">Spanish</option>
+                  <option value="fr">French</option>
+                  <option value="he">Hebrew</option>
+                  <option value="hi">Hindi</option>
+                  <option value="it">Italian</option>
+                  <option value="ja">Japanese</option>
+                  <option value="ml">Malayalam</option>
+                  <option value="mr">Marathi</option>
+                  <option value="nl">Dutch</option>
+                  <option value="no">Norwegian</option>
+                  <option value="pt">Portuguese</option>
+                  <option value="ro">Romanian</option>
+                  <option value="ru">Russian</option>
+                  <option value="sv">Swedish</option>
+                  <option value="ta">Tamil</option>
+                  <option value="te">Telugu</option>
+                  <option value="uk">Ukrainian</option>
+                  <option value="zh">Chinese</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Country</span>
+                <select name="country">
+                  <option value=""></option>
+                  <option value="au">Australia</option>
+                  <option value="br">Brazil</option>
+                  <option value="ca">Canada</option>
+                  <option value="ch">Switzerland</option>
+                  <option value="cn">China</option>
+                  <option value="de">Germany</option>
+                  <option value="eg">Egypt</option>
+                  <option value="es">Spain</option>
+                  <option value="fr">France</option>
+                  <option value="gb">United Kingdom</option>
+                  <option value="gr">Greece</option>
+                  <option value="hk">Hong Kong</option>
+                  <option value="ie">Ireland</option>
+                  <option value="il">Israel</option>
+                  <option value="in">India</option>
+                  <option value="it">Italy</option>
+                  <option value="jp">Japan</option>
+                  <option value="nl">Netherlands</option>
+                  <option value="no">Norway</option>
+                  <option value="pe">Peru</option>
+                  <option value="ph">Philippines</option>
+                  <option value="pk">Pakistan</option>
+                  <option value="pt">Portugal</option>
+                  <option value="ro">Romania</option>
+                  <option value="ru">Russian Federation</option>
+                  <option value="se">Sweden</option>
+                  <option value="sg">Singapore</option>
+                  <option value="tw">Taiwan, Province of China</option>
+                  <option value="ua">Ukraine</option>
+                  <option value="us">United States</option>
+                </select>
+              </label>
+
+              <fieldset>
+                <legend>Search In</legend>
+
+                <div class="fieldset-content">
+                  <label>
+                    <input type="checkbox" name="search-in" value="title" checked>
+                    <span>Title</span>
+                  </label>
+
+                  <label>
+                    <input type="checkbox" name="search-in" value="description" checked>
+                    <span>Description</span>
+                  </label>
+
+                  <label>
+                    <input type="checkbox" name="search-in" value="content" checked>
+                    <span>Content</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <label>
+                <span>Sort By</span>
+                <select name="sort-by">
+                  <option value=""></option>
+                  <option value="publishedAt">Published At</option>
+                  <option value="relevance">Relevance</option>
+                </select>
+              </label>
+
+              <label>
+                <span>From</span>
+                <input type="date" name="from-date" value="">
+                <input type="time" name="from-time" value="">
+              </label>
+
+              <label>
+                <span>To</span>
+                <input type="date" name="to-date" value="">
+                <input type="time" name="to-time" value="">
+              </label>
+
+              <div>
+                <button class="btn btn-revert" id="navbar-filter-form-button-reset" type="button">Reset</button>
+                <button class="btn" id="navbar-filter-form-button-submit" type="submit">OK</button>
+              </div>
+
+            </form>
+
+            <button id="navbar-filter-toggle" class="navbar-icon navbar-button">
               <svg>
-                <use xlink:href="#icon-arrow_forward"></use>
+                <use xlink:href="#icon-filter_alt"></use>
               </svg>
             </button>
-
-          </form>
-
+          </div>
         </div>
-
-        <div class="navbar-filter">
-          <form class="navbar-filter-form">
-
-            <label>
-              <span>Country</span>
-              <select name="country">
-                <option value=""></option>
-                <option value="au">Australia</option>
-                <option value="br">Brazil</option>
-                <option value="ca">Canada</option>
-                <option value="ch">Switzerland</option>
-                <option value="cn">China</option>
-                <option value="de">Germany</option>
-                <option value="eg">Egypt</option>
-                <option value="es">Spain</option>
-                <option value="fr">France</option>
-                <option value="gb">United Kingdom</option>
-                <option value="gr">Greece</option>
-                <option value="hk">Hong Kong</option>
-                <option value="ie">Ireland</option>
-                <option value="il">Israel</option>
-                <option value="in">India</option>
-                <option value="it">Italy</option>
-                <option value="jp">Japan</option>
-                <option value="nl">Netherlands</option>
-                <option value="no">Norway</option>
-                <option value="pe">Peru</option>
-                <option value="ph">Philippines</option>
-                <option value="pk">Pakistan</option>
-                <option value="pt">Portugal</option>
-                <option value="ro">Romania</option>
-                <option value="ru">Russian Federation</option>
-                <option value="se">Sweden</option>
-                <option value="sg">Singapore</option>
-                <option value="tw">Taiwan, Province of China</option>
-                <option value="ua">Ukraine</option>
-                <option value="us">United States</option>
-              </select>
-            </label>
-
-            <label>
-              <span>Language</span>
-              <select name="language">
-                <option value=""></option>
-                <option value="ar">Arabic</option>
-                <option value="de">German</option>
-                <option value="el">Greek</option>
-                <option value="en">English</option>
-                <option value="es">Spanish</option>
-                <option value="fr">French</option>
-                <option value="he">Hebrew</option>
-                <option value="hi">Hindi</option>
-                <option value="it">Italian</option>
-                <option value="ja">Japanese</option>
-                <option value="ml">Malayalam</option>
-                <option value="mr">Marathi</option>
-                <option value="nl">Dutch</option>
-                <option value="no">Norwegian</option>
-                <option value="pt">Portuguese</option>
-                <option value="ro">Romanian</option>
-                <option value="ru">Russian</option>
-                <option value="sv">Swedish</option>
-                <option value="ta">Tamil</option>
-                <option value="te">Telugu</option>
-                <option value="uk">Ukrainian</option>
-                <option value="zh">Chinese</option>
-              </select>
-            </label>
-
-            <fieldset>
-              <legend>Search In</legend>
-
-              <div class="fieldset-content">
-                <label>
-                  <input type="checkbox" name="navbar-filter-input--searchin-title" checked>
-                  <span>Title</span>
-                </label>
-
-                <label>
-                  <input type="checkbox" name="navbar-filter-input--searchin-description" checked>
-                  <span>Description</span>
-                </label>
-
-                <label>
-                  <input type="checkbox" name="navbar-filter-input--searchin-content" checked>
-                  <span>Content</span>
-                </label>
-              </div>
-            </fieldset>
-
-            <label>
-              <span>Sort By</span>
-              <select name="sortby">
-                <option value=""></option>
-                <option value="publishedAt">Published At</option>
-                <option value="relevance">Relevance</option>
-              </select>
-            </label>
-
-            <label>
-              <span>From</span>
-              <input type="datetime-local" name="from" value="">
-            </label>
-
-            <label>
-              <span>To</span>
-              <input type="datetime-local" name="to" value="">
-            </label>
-
-          </form>
-
-          <button id="navbar-filter-toggle" class="navbar-icon navbar-button">
-            <svg>
-              <use xlink:href="#icon-filter_alt"></use>
-            </svg>
-          </button>
-        </div>
-
       </nav>
     </header>
 
-    <section class="articles-list"></section>
+    <section id="section-articles">
+
+      <!--
+        https://codepen.io/supah/pen/BjYLdW
+        Follow me on
+        Dribbble: https://dribbble.com/supahfunk
+        Twitter: https://twitter.com/supahfunk
+        Codepen: https://codepen.io/supah/
+      -->
+      <div id="loader-container" class="hidden">
+        <svg class="spinner" viewBox="0 0 50 50">
+          <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+        </svg>
+      </div>
+
+      <div class="container articles-container">
+        <div class="articles-list"></div>
+      </div>
+
+    </section>
 
   </body>
 </html>

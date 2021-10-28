@@ -1,139 +1,140 @@
 // vim: set ft=javascript foldmethod=marker :
 
-// mock data {{{
-const mockData = {
-  "totalArticles": 610475,
-  "articles": [
-    {
-      "title": "STUDIU Planeta Venus nu a putut niciodată să aibă oceane, subminând și mai mult teoria că ar fi putut să găzduiască forme de viață",
-      "description": "Planeta Venus nu a putut niciodată să aibă oceane, potrivit unui studiu realizat de mai mulţi oameni de ştiinţă, care au utilizat un model climatologic",
-      "content": "STUDIU Planeta Venus nu a putut niciodată să aibă oceane, subminând și mai mult teoria că ar fi putut să găzduiască forme de viață\nPlaneta Venus nu a putut niciodată să aibă oceane, potrivit unui studiu realizat de mai mulţi oameni de ştiinţă, care a... [4699 chars]",
-      "url": "https://www.g4media.ro/studiu-planeta-venus-nu-a-putut-niciodata-sa-aiba-oceane-subminand-si-mai-mult-teoria-ca-ar-fi-putut-sa-gazduiasca-forme-de-viata.html",
-      "image": "https://cdn.g4media.ro/wp-content/uploads/2018/02/logo.png",
-      "publishedAt": "2021-10-17T09:28:00Z",
-      "source": {
-        "name": "G4Media.ro",
-        "url": "https://www.g4media.ro"
-      }
-    },
-    {
-      "title": "לקפל שכבה בפירמידה: אקויטל של קובי מימון רוצה למחוק את נפטא מהמסחר",
-      "description": "ההצעה למיזוג ולמחיקת נפטא מהמסחר לא נובעת מאילוץ או מחוק הריכוזיות, וככל הנראה מושפעת מביצועים גרועים של מניית נפטא בשנים האחרונות",
-      "content": "אף שאקויטל לא פירטה את השיקולים למהלך, מבט על מסכי המסחר מעניק הסבר אפשרי. מניית נפטא אמנם התאוששה ועלתה מתחילת החודש ב-21%, לאחר ההתאוששות הדרמטית במחירי הנפט בעולם. אבל במבט רב שנתי מדובר במניה צולעת במיוחד. בשלוש השנים האחרונות השיאה נפטא תשואה של... [616 chars]",
-      "url": "https://www.calcalist.co.il/market/article/bk311zwksk",
-      "image": "https://images1.calcalist.co.il/picserver3/crop_images/2021/08/14/B1f100LrlY/B1f100LrlY_252_32_455_257_0_large.jpg",
-      "publishedAt": "2021-10-17T09:18:31Z",
-      "source": {
-        "name": "כלכליסט",
-        "url": "https://www.calcalist.co.il"
-      }
-    },
-    {
-      "title": "Deak Ferrand: \"J’ai eu la sensation de vivre sur Dune pendant une année!\"",
-      "description": "Le Genevois Deak Ferrand est en grande partie responsable du développement visuel de cette adaptation majestueuse. Il nous raconte les dessous de sa conception.",
-      "content": "Le Genevois Deak Ferrand est en grande partie responsable du développement visuel de cette adaptation majestueuse. Il nous raconte les dessous de sa conception.\nNé à Genève, d’un père Suisse et d’une mère Canadienne, Deak Ferrand a travaillé en étroi... [10232 chars]",
-      "url": "https://www.lematin.ch/story/jai-eu-la-sensation-de-vivre-sur-dune-pendant-une-annee-397714210160",
-      "image": "https://cdn.unitycms.io/image/ocroped/1200,1200,998,640,40,2/b9XKsVVZa8o/9vLJ8gS4KW2B819d3EUys8.png",
-      "publishedAt": "2021-10-17T09:16:58Z",
-      "source": {
-        "name": "lematin.ch",
-        "url": "https://www.lematin.ch"
-      }
-    },
-    {
-      "title": "Adam Peaty’s girlfriend reacts to Strictly star’s ‘almost kiss’ with dance partner Katya Jones",
-      "description": "Olympic athlete danced a steamy Argentine tango with his professional partner in week four",
-      "content": "The girlfriend of Strictly Come Dancing star Adam Peaty has shared her reaction after he and dance partner Katya Jones supposedly “almost kissed” after their performance last night (Saturday 16 October).\nThe duo danced an intense Argentine tango for ... [1549 chars]",
-      "url": "https://www.independent.co.uk/arts-entertainment/tv/news/adam-peaty-katya-jones-kiss-girlfriend-b1939774.html",
-      "image": "https://static.independent.co.uk/2021/10/17/08/pjimage%20%284%29.jpg?width=1200&auto=webp&quality=75",
-      "publishedAt": "2021-10-17T09:14:18Z",
-      "source": {
-        "name": "The Independent",
-        "url": "https://www.independent.co.uk"
-      }
-    },
-    {
-      "title": "L’aventure The Voice est terminée pour Gjon’s Tears",
-      "description": "Malgré une belle prestation, Gjon's Tears n’a pas réussi à se qualifier pour la finale de The Voice All Stars.",
-      "content": "TF1 : L’aventure «The Voice» est terminée pour Gjon’s Tears\nMalgré une très belle interprétation de «Sur un prélude de Bach», le talent fribourgeois n’a pas réussi à se qualifier pour la finale de l’édition anniversaire du télécrochet.\nIl n’y aura pa... [902 chars]",
-      "url": "https://www.20min.ch/fr/story/laventure-the-voice-est-terminee-pour-gjons-tears-741628901735",
-      "image": "https://cdn.unitycms.io/image/ocroped/1200,1200,1000,1000,0,0/NjRGaGj7UYw/8Wjd0lT7qbrAt8_oY29GgW.png",
-      "publishedAt": "2021-10-17T09:07:35Z",
-      "source": {
-        "name": "20 Minutes",
-        "url": "https://www.20min.ch"
-      }
-    },
-    {
-      "title": "Man skjuten vid tågstation i Jordbro",
-      "description": "En man ska ha skottskadats i armen efter en attack i fullt dagsljus på en tågstation i Jordbro, södra Stockholm.",
-      "content": "Det var vid 10.17 som polis larmades till tågstationen i Jordbro. En man ska ha skottskadats i armen efter en skjutning vid Jordbro pendeltågsstation. Hans skador ska dock inte vara allvarliga, enligt polisen.\nEnligt tidiga vittnesuppgifter ska det r... [1041 chars]",
-      "url": "https://www.svt.se/nyheter/lokalt/stockholm/man-skjuten-vid-tagstation",
-      "image": "https://www.svtstatic.se/image/custom/650/27820031/1?format=auto&ratio=1.91",
-      "publishedAt": "2021-10-17T08:58:43Z",
-      "source": {
-        "name": "Sveriges Television",
-        "url": "https://www.svt.se"
-      }
-    },
-    {
-      "title": "Секрети MIUI: які програми \"вбивають\" ваш смартфон Xiaomi",
-      "description": "У всього в цьому світі є дві сторони. На перший погляд, велика кількість системних додатків і процесів це добре, різні служби допомагають користувачеві, пропонують правильні дії, відстежують події, моніторять",
-      "content": "Топові смартфони Xiaomi можуть похвалитися відмінними камерами, чудовими екранами та іншими вражаючими характеристиками. Але зробити вибір між ними може бути непросто, оскільки в асортименті Xiaomi чимало флагманів. Крім серії Mi у Xiaomi є ще суббре... [5351 chars]",
-      "url": "https://tehnofan.com.ua/2021/10/17/sekrety-miui-yaki-prohramy-vbyvayut%CA%B9-vash-smartfon-xiaomi/",
-      "image": "https://tehnofan.com.ua/wp-content/uploads/2021/10/Screenshot_8.jpg",
-      "publishedAt": "2021-10-17T08:53:52Z",
-      "source": {
-        "name": "Технофан",
-        "url": "https://tehnofan.com.ua"
-      }
-    },
-    {
-      "title": "Man skjuten i armen i Jordbro",
-      "description": "En man uppges ha blivit skjuten i armen vid pendeltågsstationen i Jordbro, söder om Stockholm. En till två gärningspersoner ska ha setts springa från platsen.",
-      "content": "En man uppges ha blivit skjuten i armen vid pendeltågsstationen i Jordbro, söder om Stockholm. En till två gärningspersoner ska ha setts springa från platsen.\n– En förbipasserande har hört en man som ropar på hjälp. Den mannen uppges ha skjutits i ar... [379 chars]",
-      "url": "https://www.hallandsposten.se/nyheter/sverige/man-skjuten-i-armen-i-jordbro-1.57229298",
-      "image": "http://www.hallandsposten.se/image/policy:1.36847645:1605003792/image.jpg?f=Wide%26w=1200%26%24p%24f%24w=834285a",
-      "publishedAt": "2021-10-17T08:49:48Z",
-      "source": {
-        "name": "Hallandsposten",
-        "url": "https://www.hallandsposten.se"
-      }
-    },
-    {
-      "title": "La FIFA se pronuncia ante la polémica con EA: “Una sola compañía no debería de acaparar todos los derechos”",
-      "description": "EA está teniendo problemas para mantener su famosa franquicia de futbol y la propia FIFA nos da su explicación.",
-      "content": "La franquicia de juegos de futbol más famosa está pasando por difíciles momentos para conservar su conocido nombre y parece que el dinero es lo que manda, como podéis ver aquí. La propia FIFA ha decidido hacer unas declaraciones para explicar el porq... [815 chars]",
-      "url": "https://generacionxbox.com/la-fifa-se-pronuncia-ante-la-polemica-con-ea/",
-      "image": "https://generacionxbox.com/wp-content/uploads/2021/07/FIFA-22-1.jpg",
-      "publishedAt": "2021-10-17T08:43:57Z",
-      "source": {
-        "name": "Generación Xbox",
-        "url": "https://generacionxbox.com"
-      }
-    },
-    {
-      "title": "Energieknappheit : Bund kann uns zum Stromsparen zwingen",
-      "description": "Der Strom könnte in Zukunft schon bald knapp werden. Als äusserste Massnahme kann der Bund den Strom rationieren. Firmen haben bereits entsprechende Post aus Bern erhalten.",
-      "content": "Energieknappheit : Bund kann uns zum Stromsparen zwingen\nDer Strom könnte in Zukunft schon bald knapp werden. Als äusserste Massnahme kann der Bund den Strom rationieren. Firmen haben bereits entsprechende Post aus Bern erhalten.\n1 / 3 Der Strom könn... [3221 chars]",
-      "url": "https://www.20min.ch/story/bund-kann-uns-zum-stromsparen-zwingen-574454424122",
-      "image": "https://cdn.unitycms.io/image/ocroped/1200,1200,1000,1000,0,0/bSXnv_xzz8A/CEB-9Q7E4wq9K1_BYPyZHm.jpg",
-      "publishedAt": "2021-10-17T08:40:44Z",
-      "source": {
-        "name": "20 Minuten",
-        "url": "https://www.20min.ch"
-      }
-    }
-  ]
-};
+// global variables {{{
+const articlesList = document.querySelector('.articles-list');
+const searchForm = document.querySelector('.navbar-search-form');
+const filterForm = document.querySelector('.navbar-filter-form');
+const loaderContainer = document.getElementById('loader-container');
+
+const API_KEY = '136979d3a14f564c839fd77a46a02a72';
+
+const initialFilterOption = {
+  language: 'en',
+  country: '',
+  ['search-in']: [ 'title', 'description', 'content' ],
+  ['sort-by']: '',
+  ['from-date']: '',
+  ['from-time']: '00:00',
+  ['to-date']: '',
+  ['to-time']: '00:00',
+}
+
+let filterOption = { ...initialFilterOption };
 //}}}
 
-//{{{
-function renderData(data) {
-  const articlesList = document.querySelector('section.articles-list')
+// convert filter options to an object of query strings {{{
+function convertOptionToQuery(options) {
+  return {
+    language: options.language ? `&lang=${options.language}` : '',
+    country: options.country ? `&country=${options.country}` : '',
+    ['search-in']: options['search-in'].length ? `&in=${options['search-in'].join(',')}` : '',
+    ['sort-by']: options['sort-by'] ? `&sortby=${options['sort-by']}` : '',
+    ['from-date']: options['from-date'] ? `&from=${options['from-date']}` : '',
+    ['from-time']: options['from-date'] ? `T${options['from-time']}:00Z` : '',
+    ['to-date']: options['to-date'] ? `&to=${options['to-date']}` : '',
+    ['to-time']: options['to-date'] ? `T${options['to-time']}:00Z` : '',
+  };
+}
+//}}}
 
-  articlesList.innerHTML = '';
-  data.forEach(function(article) {
+// fetch top headlines {{{
+async function fetchTopHeadlines() {
+  const queries = convertOptionToQuery(filterOption);
+  const url = [
+    'https://gnews.io/api/v4/top-headlines',
+    '?',
+    `token=${API_KEY}`,
+    queries.language,
+    queries.countries,
+    queries['sort-by'],
+    queries['from-date'],
+    queries['from-time'],
+    queries['to-date'],
+    queries['to-time'],
+  ].join('');
+
+  const res = await fetch(url);
+
+  if (res.ok) {
+    const data = await res.json();
+    return {
+      ok: true,
+      data: data.articles,
+    };
+  } else {
+    return { ok: false };
+  }
+}
+//}}}
+
+// search articles {{{
+async function fetchSearchedArticles(query) {
+  const queries = convertOptionToQuery(filterOption);
+  const url = [
+    'https://gnews.io/api/v4/search',
+    '?',
+    `token=${API_KEY}`,
+    `&q=${query}`,
+    queries.language,
+    queries.countries,
+    queries['sort-by'],
+    queries['from-date'],
+    queries['from-time'],
+    queries['to-date'],
+    queries['to-time'],
+    queries['search-in'],
+  ].join('');
+
+  const res = await fetch(url);
+
+  if (res.ok) {
+    const data = await res.json();
+    return {
+      ok: true,
+      data: data.articles,
+    };
+  } else {
+    return { ok: false };
+  }
+}
+//}}}
+
+// set filter option {{{
+function setFilterOption() {
+  let newOption = { ['search-in']: [] };
+  const formData = new FormData(filterForm);
+  for (var entry of formData.entries()) {
+    if (entry[0] != 'search-in') {
+      newOption[entry[0]] = entry[1];
+    } else {
+      newOption['search-in'].push(entry[1]);
+    }
+  }
+
+  filterOption = { ...newOption };
+}
+//}}}
+
+// set filter form {{{
+function setFilterForm() {
+  Object.keys(filterOption).filter(field => field != 'search-in')
+    .forEach(function(fieldName) {
+      filterForm.elements[fieldName].value = filterOption[fieldName];
+    });
+  // our checkboxes need special attention
+  filterForm.elements["search-in"].forEach(function(element) {
+    element.checked = filterOption["search-in"].includes(element.value)
+                    ? true
+                    : false;
+  });
+}
+//}}}
+
+// render articles list {{{
+function renderArticlesList(data) {
+  // loop through each article
+  return data.map(function(article) {
+    // clone the template
     const articleTemplate = document.getElementById('template-article-piece')
       .content
       .firstElementChild
@@ -148,33 +149,105 @@ function renderData(data) {
     articleImg.src = article.image;
     articleTitleLink.textContent = article.title;
     articleTime.textContent = new Date(article.publishedAt)
-      .toLocaleString('vi-VN',
+      .toLocaleString('en-US',
         {
           dateStyle: 'full',
           timeStyle: 'medium',
           hour12: true,
         });
-    articleSummary.textContent = article.content
-      .split(' ')
-      .slice(0, -2)
-      .join(' ');
+    articleSummary.textContent = article.description;
+    //articleSummary.textContent = article.content
+    //  .split(' ')
+    //  .slice(0, -2)
+    //  .join(' ');
     articleImgLink.href = article.url;
     articleTitleLink.href = article.url;
 
-    articlesList.appendChild(articleTemplate);
+    return articleTemplate;
   });
+}
+//}}}
 
+// render error message {{{
+function renderErrorMessage(message) {
+  const errorMessageTemplate = document.getElementById('template-error')
+    .content
+    .firstElementChild
+    .cloneNode(true);
+
+  const errorTextNode = errorMessageTemplate.querySelector('.error-text');
+  errorTextNode.textContent = message;
+
+  return errorMessageTemplate;
+}
+//}}}
+
+// render page {{{
+async function renderPage(container, type = 'TOP_HEADLINES', query = '') {
+  let fetchResult;
+
+  // show the loader, then fetch data
+  loaderContainer.classList.remove('hidden');
+  switch (type) {
+    case 'TOP_HEADLINES':
+      fetchResult = await fetchTopHeadlines();
+      break;
+    case 'SEARCH':
+      fetchResult = query ? await fetchSearchedArticles(query) : await fetchTopHeadlines();
+      break;
+    default:
+      fetchResult = { ok: false };
+      break;
+  }
+
+  // scraps old contents
+  container.innerHTML = '';
+
+  if (!fetchResult.ok) {
+    container.appendChild(renderErrorMessage('There was some error fetching articles. Please try again!'));
+  } else if (!fetchResult.data.length) {
+    container.appendChild(renderErrorMessage('No articles found! Please try another search string or filter option!'));
+  } else {
+    renderArticlesList(fetchResult.data).forEach(function(element) {
+      container.appendChild(element);
+    });
+  }
+
+  // hide the loader again
+  loaderContainer.classList.add('hidden');
 }
 //}}}
 
 // event listeners {{{
-document.getElementById('navbar-search-submit').addEventListener('click', (e) => {
+searchForm.addEventListener('submit', function(e) {
   e.preventDefault();
-  console.log('search button clicked!');
+  renderPage(articlesList, 'SEARCH', searchForm.elements.searchquery.value);
 });
 
-document.getElementById('navbar-filter-toggle').addEventListener('click', () => {
-  document.querySelector('.navbar-filter-form').classList.toggle('opened');
+filterForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  setFilterOption();
+  filterForm.classList.remove('opened');
+});
+
+document.getElementById('navbar-filter-form-button-reset').addEventListener('click', function() {
+  filterOption = { ...initialFilterOption };
+  setFilterForm();
+});
+
+// filter toggle is more complex
+document.getElementById('navbar-filter-toggle').addEventListener('click', function() {
+  if (filterForm.className.includes('opened')) {
+    // simply hide the form if it is not hidden
+    filterForm.classList.remove('opened');
+  } else {
+    // update the form input values with global object
+    // before unhiding it
+    setFilterForm();
+    filterForm.classList.add('opened');
+  }
 })
 
 //}}}
+
+renderPage(articlesList, 'TOP_HEADLINES');
